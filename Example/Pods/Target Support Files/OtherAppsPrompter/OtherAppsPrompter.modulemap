@@ -1,0 +1,6 @@
+framework module OtherAppsPrompter {
+  umbrella header "OtherAppsPrompter-umbrella.h"
+
+  export *
+  module * { export * }
+}

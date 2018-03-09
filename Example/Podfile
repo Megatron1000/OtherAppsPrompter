@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'OtherAppsPrompter_Example' do
+  pod 'OtherAppsPrompter', :path => '../'
+
+  target 'OtherAppsPrompter_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

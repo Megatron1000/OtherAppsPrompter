@@ -1,0 +1,6 @@
+framework module Pods_OtherAppsPrompter_Tests {
+  umbrella header "Pods-OtherAppsPrompter_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

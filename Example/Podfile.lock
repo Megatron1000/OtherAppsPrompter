@@ -1,0 +1,16 @@
+PODS:
+  - OtherAppsPrompter (0.1.3)
+
+DEPENDENCIES:
+  - OtherAppsPrompter (from `../`)
+
+EXTERNAL SOURCES:
+  OtherAppsPrompter:
+    :path: ../
+
+SPEC CHECKSUMS:
+  OtherAppsPrompter: e26931ebded643dde3ca4f3c7d07cd73a4570ad7
+
+PODFILE CHECKSUM: fa54e897742e7b00939f4dd74fbba559c7b6f440
+
+COCOAPODS: 1.4.0
