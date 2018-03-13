@@ -20,30 +20,46 @@
 //    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //    SOFTWARE.
 
-import XCTest
+import Cocoa
 
-class OtherAppsPrompter_Tests: XCTestCase {
+class AppService {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    let httpClient: HTTPClient
+    
+    // MARK: Initialisation
+    
+    required init(httpClient: HTTPClient = HTTPClient()) {
+        self.httpClient = httpClient
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    // MARK: Calls
+    
+    func getApps(withCompletion completion: @escaping (( Result<[App]>) -> Void)) {
+        
+        let string = "https://api.mailgun.net/v3/lists/members/"
+        
+        let request = URLRequest(url: URL(string: string)!)
+        
+        httpClient.makeNetworkRequest(with: request, completion: { result in
+            
+            switch result {
+            case .success(let data):
+                
+                do {
+                    let apps = try JSONDecoder().decode([App].self, from: data)
+                    completion(.success(apps))
+                } catch {
+                    completion(.failure(error))
+                    return
+                }
+                
+            case .failure(let error):
+                completion(.failure(error))
+            }
+            
+        })
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+
     
 }

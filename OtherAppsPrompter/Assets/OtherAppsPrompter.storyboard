@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
         <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
@@ -821,6 +821,102 @@
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="663"/>
+        </scene>
+        <!--Other Apps View Controller-->
+        <scene sceneID="86g-XV-XjV">
+            <objects>
+                <viewController id="QPO-TS-ksK" customClass="OtherAppsViewController" customModule="OtherAppsPrompter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" wantsLayer="YES" id="tYp-0X-w3w">
+                        <rect key="frame" x="0.0" y="0.0" width="703" height="629"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tUF-f0-QDW">
+                                <rect key="frame" x="20" y="20" width="663" height="589"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ml5-M6-Y2k">
+                                        <rect key="frame" x="-2" y="553" width="479" height="36"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Thanks for using My Awesome App" id="Tqd-fW-7Eq">
+                                            <font key="font" metaFont="systemSemibold" size="30"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="n3j-Q3-adx">
+                                        <rect key="frame" x="-2" y="528" width="396" height="17"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Perhaps I could interest you in some more of my developer tools." id="3kF-Cp-Nak">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMw-cg-wE6">
+                                        <rect key="frame" x="0.0" y="22" width="663" height="498"/>
+                                        <clipView key="contentView" drawsBackground="NO" id="9oS-uU-jHG">
+                                            <rect key="frame" x="1" y="1" width="661" height="496"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <collectionView id="8m2-1j-qkz">
+                                                    <rect key="frame" x="0.0" y="0.0" width="661" height="158"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="FyP-Hz-ZDU">
+                                                        <size key="itemSize" width="50" height="50"/>
+                                                    </collectionViewFlowLayout>
+                                                    <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </collectionView>
+                                            </subviews>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </clipView>
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="kqF-Ul-ODx">
+                                            <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="AiO-R1-Xzx">
+                                            <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                    </scrollView>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hXU-JV-JEA">
+                                        <rect key="frame" x="-2" y="-2" width="203" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Show me this again next time." bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="bUj-Ng-0Jc">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="PMw-cg-wE6" firstAttribute="width" secondItem="tUF-f0-QDW" secondAttribute="width" id="I1P-Rj-9kH"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="tUF-f0-QDW" firstAttribute="leading" secondItem="tYp-0X-w3w" secondAttribute="leading" constant="20" id="EMa-yJ-tsD"/>
+                            <constraint firstAttribute="trailing" secondItem="tUF-f0-QDW" secondAttribute="trailing" constant="20" id="Os4-Ki-uEX"/>
+                            <constraint firstAttribute="bottom" secondItem="tUF-f0-QDW" secondAttribute="bottom" constant="20" id="TSZ-9w-OmH"/>
+                            <constraint firstItem="tUF-f0-QDW" firstAttribute="top" secondItem="tYp-0X-w3w" secondAttribute="top" constant="20" id="gHe-1y-tvc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="8m2-1j-qkz" id="Se4-mk-lDc"/>
+                        <outlet property="descriptionTextField" destination="n3j-Q3-adx" id="raB-GU-WkJ"/>
+                        <outlet property="showMeAgainButton" destination="hXU-JV-JEA" id="IA4-Ye-roq"/>
+                        <outlet property="titleTextField" destination="ml5-M6-Y2k" id="pqE-f0-VUg"/>
+                    </connections>
+                </viewController>
+                <customObject id="eAJ-UC-diw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="90" y="1189"/>
         </scene>
     </scenes>
     <resources>
