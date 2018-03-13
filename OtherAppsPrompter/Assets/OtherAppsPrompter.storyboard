@@ -696,131 +696,12 @@
                         </connections>
                     </window>
                     <connections>
-                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
+                        <segue destination="QPO-TS-ksK" kind="relationship" relationship="window.shadowedContentViewController" id="apb-r1-4UR"/>
                     </connections>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
-        </scene>
-        <!--Sign Up Prompt View Controller-->
-        <scene sceneID="hIz-AP-VOD">
-            <objects>
-                <viewController id="XfG-lQ-9wD" customClass="SignUpPromptViewController" customModule="OtherAppsPrompter" sceneMemberID="viewController">
-                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="298"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <stackView distribution="fill" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eT4-jy-WWb">
-                                <rect key="frame" x="20" y="20" width="440" height="273"/>
-                                <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dNA-81-Pyv">
-                                        <rect key="frame" x="11" y="237" width="419" height="36"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Welcome To My Awesome App" id="PpD-8i-Aw3">
-                                            <font key="font" metaFont="systemSemibold" size="30"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oYl-Ih-XQj">
-                                        <rect key="frame" x="134" y="205" width="172" height="24"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Let's keep in touch." id="uly-DC-Hdh">
-                                            <font key="font" metaFont="system" size="20"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="UrG-ms-yC3">
-                                        <rect key="frame" x="7" y="163" width="427" height="34"/>
-                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" id="KoZ-eK-QZ7">
-                                            <font key="font" metaFont="system"/>
-                                            <string key="title">From time to time I might email you to let you know about updates to the developer tools I'm working on. They'll be no spam, I promise.</string>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O6d-ne-nvt">
-                                        <rect key="frame" x="0.0" y="133" width="440" height="22"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" placeholderString="your@email.com" bezelStyle="round" id="B0s-Ng-6DM">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="xAW-fC-DUD">
-                                        <rect key="frame" x="179" y="108" width="82" height="17"/>
-                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="There's also" id="2Nf-D9-jU1">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Gnf-Mo-I8c">
-                                        <rect key="frame" x="170" y="68" width="100" height="32"/>
-                                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="Twitter" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="KLO-YG-J5V">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="twitterPressed:" target="XfG-lQ-9wD" id="9Z9-fh-Iwv"/>
-                                        </connections>
-                                    </button>
-                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="Ie7-kK-eZo">
-                                        <rect key="frame" x="151" y="27" width="138" height="35"/>
-                                        <buttonCell key="cell" type="check" title="Don't ask me again" bezelStyle="regularSquare" imagePosition="left" inset="2" id="B9r-Lz-YLl">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yhi-v7-Rqk">
-                                        <rect key="frame" x="173" y="-7" width="95" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Continue" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UJF-2w-kt8">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="continuePressed:" target="XfG-lQ-9wD" id="a7t-M3-W4M"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <visibilityPriorities>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                </visibilityPriorities>
-                                <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                </customSpacing>
-                            </stackView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="eT4-jy-WWb" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="5" id="5UJ-7R-TgW"/>
-                            <constraint firstAttribute="trailing" secondItem="eT4-jy-WWb" secondAttribute="trailing" constant="20" id="M3d-1A-pdh"/>
-                            <constraint firstItem="eT4-jy-WWb" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="P1E-Z5-bkk"/>
-                            <constraint firstAttribute="bottom" secondItem="eT4-jy-WWb" secondAttribute="bottom" constant="20" id="P6F-ZP-ZXQ"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="emailAddressTextField" destination="O6d-ne-nvt" id="qwP-kU-AYq"/>
-                        <outlet property="suppressionButton" destination="Ie7-kK-eZo" id="iNh-zj-yQ1"/>
-                        <outlet property="titleTextField" destination="dNA-81-Pyv" id="yfm-AB-1UQ"/>
-                    </connections>
-                </viewController>
-                <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="75" y="663"/>
         </scene>
         <!--Other Apps View Controller-->
         <scene sceneID="86g-XV-XjV">
@@ -916,10 +797,7 @@
                 </viewController>
                 <customObject id="eAJ-UC-diw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="90" y="1189"/>
+            <point key="canvasLocation" x="76" y="867"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Twitter" width="100" height="100"/>
-    </resources>
 </document>

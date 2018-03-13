@@ -22,12 +22,12 @@
 
 import Foundation
 
-enum Result<ResultType> {
+public enum Result<ResultType> {
     case success(ResultType)
     case failure(Error)
 }
 
-extension Result {
+public extension Result {
 
     var result: ResultType? {
 

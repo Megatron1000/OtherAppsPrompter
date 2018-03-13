@@ -57,20 +57,97 @@ class OtherAppsViewController: NSViewController {
     
 }
 
+// MARK: NSCollectionViewDataSource
+
+extension OtherAppsViewController: NSCollectionViewDataSource {
+    
+    func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
+        return apps.count
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
+        
+        guard let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AppCellItem"), for: indexPath) as? AppCellItem else {
+            fatalError("Wrong item returned")
+        }
+        item.delegate = self
+        (item.view as! ImageCellView).viewController?.delegate = self
+        
+        // TODO: Investigate this crash
+        guard imageCellViewModels.count > indexPath.item else {
+            return item
+        }
+        
+        let cellViewModel = imageCellViewModels[indexPath.item]
+        
+        item.image = cellViewModel.image
+        switch cellViewModel.matchState {
+        case .exactMatch:
+            item.selectedStateImageView?.image = #imageLiteral(resourceName: "Selected Exact Match")
+            
+        case .closeMatch:
+            item.selectedStateImageView?.image = #imageLiteral(resourceName: "Selected Close Match")
+            
+        case .notMatched:
+            item.selectedStateImageView?.image = nil
+            
+        }
+        
+        
+        return item
+    }
+}
+
+
+// MARK: NSCollectionViewDelegate
+
+extension OtherAppsViewController: NSCollectionViewDelegate {
+    
+    func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
+        
+    }
+    
+}
+
+// MARK: NSCollectionViewDelegateFlowLayout
+
+extension OtherAppsViewController: NSCollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
+        
+        let totalGap = (EditorControlsViewController.collectionViewInset * 2) + (EditorControlsViewController.collectionViewInset * (EditorControlsViewController.collectionViewItemsPerRow - 1))
+        
+        let itemWidth = (collectionView.frame.size.width - totalGap) / EditorControlsViewController.collectionViewItemsPerRow
+        
+        return NSSize(width: itemWidth, height: itemWidth)
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, insetForSectionAt section: Int) -> NSEdgeInsets {
+        
+        return NSEdgeInsets(top: EditorControlsViewController.collectionViewInset,
+                            left: EditorControlsViewController.collectionViewInset,
+                            bottom: EditorControlsViewController.collectionViewInset,
+                            right: EditorControlsViewController.collectionViewInset)
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return EditorControlsViewController.collectionViewInset
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return EditorControlsViewController.collectionViewInset
+    }
+    
+}
+
+// MARK: NSWindowDelegate
 
 extension OtherAppsViewController: NSWindowDelegate {
     
     func windowWillClose(_ notification: Notification) {
-        
-        let state: SignUpState
-        let suppressed = (suppressionButton?.state == .on)
-        
-        if let email = emailAddressTextField?.stringValue, email.isEmpty == false {
-            state = .didSignUp(email: email)
-        } else {
-            state = .dismissed(suppressedFuturePrompts: suppressed)
-        }
-        
-        delegate?.signUpPromptViewController(signUpPromptViewController: self, didFinishedWithState: state)
+        let suppressed = (showMeAgainButton?.state == .off)
+        delegate?.otherAppsViewController(otherAppsViewController: self, didCloseWithState: suppressed ? .canShowAgain : .dontShowAgain )
     }
 }
