@@ -27,7 +27,7 @@ import OtherAppsPrompter
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     let otherAppsPrompter = OtherAppsPrompterController(appStoreID: "809625456",
-                                                        appName: Bundle.main.displayName!,
+                                                        appName: "My App",
                                                         configURL: Bundle.main.url(forResource: "OtherAppsConfig", withExtension: "json")!)
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
