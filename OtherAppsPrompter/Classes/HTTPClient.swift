@@ -53,24 +53,7 @@ class HTTPClient {
                 completion(.failure(error))
                 return
             }
-            
-            guard
-                let httpResponse = response as? HTTPURLResponse else {
-                    completion(.failure(HTTPClientError.unexpectedResponse))
-                    return
-            }
-            
-            guard
-                httpResponse.statusCodeValue?.isSuccess == true else {
-                    if httpResponse.statusCodeValue == .unauthorized {
-                        completion(.failure(HTTPClientError.unauthorised))
-                    } else {
-                        completion(.failure(HTTPClientError.badStatusCode))
-                    }
-                    
-                    return
-            }
-            
+                        
             guard let data = data else {
                 completion(.failure(HTTPClientError.emptyResponse))
                 return

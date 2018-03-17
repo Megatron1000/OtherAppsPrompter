@@ -21,18 +21,24 @@
 //    SOFTWARE.
 
 import Cocoa
+import Kingfisher
 
 public class OtherAppsPrompter {
     
-    let suppressPromptKey = "com.otherappsprompter.suppressed"
+    enum OtherAppsPrompterError: Error {
+        case failedToPrefetchAllImages
+    }
     
+    let suppressPromptKey = "com.otherappsprompter.suppressed"
+    let appStoreLinkFormat = "macappstore://itunes.apple.com/us/app/id%@?ls=1&mt=8"
+
     let appIdentifier: String
     let appName: String
     let configURL: URL
+    let httpClient = HTTPClient()
     
     private var windowController: NSWindowController?
     
-    lazy private var appService: AppService = AppService()
     private let defaults = UserDefaults.standard
     private var apps: [App]?
     
@@ -42,6 +48,7 @@ public class OtherAppsPrompter {
             apps.isEmpty == false else {
                 return false
         }
+        return true
     }
     
     var isSuppressed: Bool {
@@ -56,21 +63,73 @@ public class OtherAppsPrompter {
         self.configURL = configURL
     }
     
-    public func prepareAndPresentUnlessSuppressed(completion: @escaping (() -> Result<()>)) {
+    public func prepareAndPresentUnlessSuppressed(completion: @escaping ((Result<()>) -> Void)) {
         
+        guard
+            isSuppressed == false else {
+                return
+        }
+        
+        if isPrepared {
+            present()
+            completion(.success(()))
+        }
+        else {
+            prepare(completion: { [weak self] result in
+                switch result {
+                    
+                case .success():
+                    self?.present()
+                    completion(.success(()))
+
+                case .failure(let error):
+                    completion(.failure(error))
+                    
+                }
+            })
+        }
+
     }
     
-    public func prepare(completion: @escaping (() -> Result<()>)) {
-        appService.getApps { result in
+    public func prepare(completion: @escaping ((Result<Void>) -> Void)) {
+        
+        let request = URLRequest(url: configURL)
+        
+        httpClient.makeNetworkRequest(with: request, completion: { result in
+            
             switch result {
-            case .success(let apps):
-                completion(.success)
+            case .success(let data):
+                
+                do {
+                    let apps = try JSONDecoder().decode([App].self, from: data)
+                    
+                    let urls = apps.map{ $0.imageUrl }
+                    let prefetcher = ImagePrefetcher(urls: urls) { [weak self] skippedResources, failedResources, completedResources in
+                        
+                        guard failedResources.isEmpty else {
+                            completion(.failure(OtherAppsPrompterError.failedToPrefetchAllImages))
+                            return
+                        }
+                        
+                        self?.apps = apps
+                        
+                        completion(.success(()))
+                        
+                    }
+                    prefetcher.start()
+                    
+                    
+                } catch {
+                    completion(.failure(error))
+                    return
+                }
                 
             case .failure(let error):
-                completion(.failure)
-                
+                completion(.failure(error))
             }
-        }
+            
+        })        
+        
     }
     
     public func present() {
@@ -80,11 +139,6 @@ public class OtherAppsPrompter {
                 fatalError("Asked to present before being prepared")
         }
         
-        guard
-            isSuppressed == false else {
-            return
-        }
-
         let frameworkBundle = Bundle(for: OtherAppsPrompter.self)
         let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("OtherAppsPrompter.bundle")
         let resourceBundle = Bundle(url: bundleURL!)!
@@ -94,6 +148,7 @@ public class OtherAppsPrompter {
         let viewController = (windowController?.contentViewController as! OtherAppsViewController)
         viewController.delegate = self
         viewController.appName = appName
+        viewController.apps = apps!
         
         windowController?.window?.makeKeyAndOrderFront(self)
         NSApp.activate(ignoringOtherApps: true)
@@ -105,6 +160,12 @@ extension OtherAppsPrompter: OtherAppsViewControllerDelegate {
     
     func otherAppsViewController(otherAppsViewController: OtherAppsViewController, didSelectApp app: App) {
         
+        let urlString = String(format: appStoreLinkFormat, app.appStoreID)
+        guard let url = URL(string: urlString) else {
+            fatalError("Failed to make url for app store")
+        }
+        
+        NSWorkspace.shared.open(url)
     }
     
     func otherAppsViewController(otherAppsViewController: OtherAppsViewController, didCloseWithState dismissState: OtherAppsViewController.DismissState) {

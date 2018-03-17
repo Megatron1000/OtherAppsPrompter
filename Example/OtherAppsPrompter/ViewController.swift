@@ -25,41 +25,22 @@ import OtherAppsPrompter
 
 class ViewController: NSViewController {
     
-    let mailingListPrompter = OtherAppsPrompterPrompter(suiteName: "the user default suite's identifier",
-                                                  apiKey: "your mailgun api key",
-                                                  domain: "the mailgun api",
-                                                  appIdentifier: Bundle.main.bundleIdentifier!,
-                                                  appName: Bundle.main.displayName!
-                                                  )
-
+    let otherAppsPrompter = OtherAppsPrompter(appIdentifier: "123123",
+                                                appName: Bundle.main.displayName!,
+                                                configURL: Bundle.main.url(forResource: "OtherAppsConfig", withExtension: "json")!)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mailingListPrompter.showPromptIfNecessary(completion: { result in
-            
+        otherAppsPrompter.prepareAndPresentUnlessSuppressed { result in
             switch result {
+                case .success:
+                    break
                 
-            case .signedUp(let email):
-                break
-                
-            case .registeredNewAppIdentifier(let email):
-                break
-                
-            case .emailAndAppIdentifierAlreadyRegistered(let email):
-                break
-                
-            case .failed(let email, let error):
-                break
-                
-            case .didntSignUp:
-                break
-                
-            case .suppressed:
-                break
-                
+                case .failure:
+                    break
             }
-            
-        })
+        }
     }
 
 }

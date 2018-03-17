@@ -29,7 +29,6 @@
 		73D041D6DF55D321A4BD8DA8A9AF9D29 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56EDEABA91C63694DBEE307F0490625 /* Cocoa.framework */; };
 		78215448405C3ADE42578D690CCDBB70 /* Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494F615EF9027A580A243CCF50B36944 /* Kingfisher.swift */; };
 		7870DDB73FEA8A430EF54EAD2C23FBBE /* Pods-OtherAppsPrompter_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F67BB7166A045111E7D5C272F8493493 /* Pods-OtherAppsPrompter_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		807AA28305C2DD9D34DF965269D15F6A /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FBBC1CF4788116DBDC220E4ABCF85 /* AppService.swift */; };
 		821A5181AE6736145EAB954027262898 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56EDEABA91C63694DBEE307F0490625 /* Cocoa.framework */; };
 		85D348486DAFA6C9AF56D483A111B5A9 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A016C18ED0F9D79CD6CA55A243E4818F /* ImageDownloader.swift */; };
 		8FF14FD22E08E60112C42002CBCC237C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEB6A4E27BD2E9AB785088F0FD49BA44 /* Assets.xcassets */; };
@@ -105,7 +104,6 @@
 		371949099A0DDCBB6DDB23E02BCD0FD6 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
 		39362FC6A3C5DBC611F014A6DE5B889B /* Kingfisher-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Kingfisher-umbrella.h"; sourceTree = "<group>"; };
 		3AC87FAE08476FDC005CA236A3A23857 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3F8FBBC1CF4788116DBDC220E4ABCF85 /* AppService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppService.swift; path = OtherAppsPrompter/Classes/AppService.swift; sourceTree = "<group>"; };
 		41E71CD28F7E428D27242F2CB7ED5543 /* ImageProcessor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageProcessor.swift; path = Sources/ImageProcessor.swift; sourceTree = "<group>"; };
 		42F0BB50D4CD0A6EF2EEEB6E1779B77F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		467455A51BAA7FCA1144CDFEC26A9B35 /* Pods-OtherAppsPrompter_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OtherAppsPrompter_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -279,7 +277,6 @@
 				C53E5FDC25475B6505B256D12C338129 /* App.swift */,
 				4EFCCD9D2C0DF36A5EDBC01877EBAA96 /* AppCellView.swift */,
 				60830D882058151C00487D69 /* AppCellItem.swift */,
-				3F8FBBC1CF4788116DBDC220E4ABCF85 /* AppService.swift */,
 				06F75C7728DF0F001C5B3C7EB101F699 /* Bundle+AppName.swift */,
 				6B83BD6B3312996C9AF00700ACC316AA /* HTTPClient.swift */,
 				9B9CC7816FBB91D2C875D8830893F970 /* HTTPStatusCodes.swift */,
@@ -611,7 +608,6 @@
 			files = (
 				D84587C76D5226E8129884205E30C5CB /* App.swift in Sources */,
 				D79D26BD429105C3F60EBD0147DB8AC9 /* AppCellView.swift in Sources */,
-				807AA28305C2DD9D34DF965269D15F6A /* AppService.swift in Sources */,
 				0DE40F508E7D73C82ED2ABDC84E3BFED /* Bundle+AppName.swift in Sources */,
 				E1D299ACB2AE2D01F907921737B4386B /* HTTPClient.swift in Sources */,
 				60830D892058151C00487D69 /* AppCellItem.swift in Sources */,

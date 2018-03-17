@@ -28,6 +28,11 @@ class AppCellView: NSView {
     lazy var stackView: NSStackView = {
         let stackView = NSStackView(frame: .zero)
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = NSStackView.Distribution.fill
+        stackView.orientation = .vertical
+        stackView.alignment = .leading
+//        stackView.edgeInsets = NSEdgeInsetsMake(20, 20, 20, 20)
+        
         return stackView
     }()
     
@@ -39,21 +44,45 @@ class AppCellView: NSView {
     lazy var titleLabel: NSTextField = {
         let textField = NSTextField(frame: .zero)
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.lineBreakMode = .byWordWrapping
+        textField.setContentCompressionResistancePriority(NSLayoutConstraint.Priority.defaultLow, for: .horizontal)
+        textField.isBordered = false
+        textField.textColor = NSColor.textColor
+        textField.drawsBackground = false
+        textField.isEditable = false
+        textField.font = NSFont.systemFont(ofSize: 18, weight: NSFont.Weight.regular)
         return textField
     }()
     lazy var descriptionLabel: NSTextField = {
         let textField = NSTextField(frame: .zero)
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.lineBreakMode = .byWordWrapping
+        textField.setContentCompressionResistancePriority(NSLayoutConstraint.Priority.defaultLow, for: .horizontal)
+        textField.isBordered = false
+        textField.textColor = NSColor.textColor
+        textField.drawsBackground = false
+        textField.isEditable = false
+        textField.font = NSFont.systemFont(ofSize: 18, weight: NSFont.Weight.light)
         return textField
     }()
-    lazy var viewOnAppStoreButton: NSButton = {
-        let button = NSButton(frame: .zero)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+    lazy var viewOnAppStoreLabel: NSTextField = {
+        let textField = NSTextField(frame: .zero)
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.lineBreakMode = .byWordWrapping
+        textField.setContentCompressionResistancePriority(NSLayoutConstraint.Priority.defaultLow, for: .horizontal)
+        textField.isBordered = false
+        textField.textColor = NSColor.textColor
+        textField.drawsBackground = false
+        textField.isEditable = false
+        textField.stringValue = "View in Mac App Store >"
+        textField.font = NSFont.systemFont(ofSize: 18, weight: NSFont.Weight.light)
+        textField.textColor = NSColor.alternateSelectedControlColor
+        return textField
     }()
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
+        
         
         addSubview(stackView)
         
@@ -67,7 +96,10 @@ class AppCellView: NSView {
         stackView.addArrangedSubview(iconImageView)
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(descriptionLabel)
-        stackView.addArrangedSubview(viewOnAppStoreButton)
+        stackView.addArrangedSubview(viewOnAppStoreLabel)
+        
+        iconImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        iconImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
     
     required init?(coder: NSCoder) {

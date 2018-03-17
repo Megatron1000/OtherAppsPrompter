@@ -687,7 +687,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Welcome" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
+                    <window key="window" title="Other Apps" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -708,14 +708,14 @@
             <objects>
                 <viewController id="QPO-TS-ksK" customClass="OtherAppsViewController" customModule="OtherAppsPrompter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="tYp-0X-w3w">
-                        <rect key="frame" x="0.0" y="0.0" width="703" height="629"/>
+                        <rect key="frame" x="0.0" y="0.0" width="904" height="660"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tUF-f0-QDW">
-                                <rect key="frame" x="20" y="20" width="663" height="589"/>
+                                <rect key="frame" x="20" y="20" width="864" height="627"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ml5-M6-Y2k">
-                                        <rect key="frame" x="-2" y="553" width="479" height="36"/>
+                                        <rect key="frame" x="-2" y="591" width="479" height="36"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Thanks for using My Awesome App" id="Tqd-fW-7Eq">
                                             <font key="font" metaFont="systemSemibold" size="30"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -723,21 +723,21 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="n3j-Q3-adx">
-                                        <rect key="frame" x="-2" y="528" width="396" height="17"/>
+                                        <rect key="frame" x="-2" y="564" width="447" height="19"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Perhaps I could interest you in some more of my developer tools." id="3kF-Cp-Nak">
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" metaFont="system" size="15"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMw-cg-wE6">
-                                        <rect key="frame" x="0.0" y="22" width="663" height="498"/>
+                                    <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMw-cg-wE6">
+                                        <rect key="frame" x="0.0" y="22" width="864" height="534"/>
                                         <clipView key="contentView" drawsBackground="NO" id="9oS-uU-jHG">
-                                            <rect key="frame" x="1" y="1" width="661" height="496"/>
+                                            <rect key="frame" x="1" y="1" width="862" height="532"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <collectionView id="8m2-1j-qkz">
-                                                    <rect key="frame" x="0.0" y="0.0" width="661" height="158"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="862" height="532"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="FyP-Hz-ZDU">
                                                         <size key="itemSize" width="50" height="50"/>
@@ -748,7 +748,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="kqF-Ul-ODx">
-                                            <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                            <rect key="frame" x="-100" y="-100" width="233" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="AiO-R1-Xzx">
@@ -797,7 +797,7 @@
                 </viewController>
                 <customObject id="eAJ-UC-diw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="76" y="867"/>
+            <point key="canvasLocation" x="-25" y="881"/>
         </scene>
     </scenes>
 </document>

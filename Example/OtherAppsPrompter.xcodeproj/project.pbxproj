@@ -14,6 +14,7 @@
 		ABED5E1A1F7D4C610046EF3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABED5E191F7D4C610046EF3F /* Assets.xcassets */; };
 		ABED5E1D1F7D4C610046EF3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABED5E1B1F7D4C610046EF3F /* Main.storyboard */; };
 		ABED5E2C1F7D52E20046EF3F /* OtherAppsPrompter_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABED5E2B1F7D52E20046EF3F /* OtherAppsPrompter_Tests.swift */; };
+		ABF1A62F205D0EC300B7A123 /* OtherAppsConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = ABF1A62E205D0EC200B7A123 /* OtherAppsConfig.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		ABED5E291F7D52E20046EF3F /* OtherAppsPrompter_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OtherAppsPrompter_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABED5E2B1F7D52E20046EF3F /* OtherAppsPrompter_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherAppsPrompter_Tests.swift; sourceTree = "<group>"; };
 		ABED5E2D1F7D52E20046EF3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABF1A62E205D0EC200B7A123 /* OtherAppsConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = OtherAppsConfig.json; sourceTree = "<group>"; };
 		B53F3AF149FDA4E86E604138 /* Pods-OtherAppsPrompter_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OtherAppsPrompter_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OtherAppsPrompter_Example/Pods-OtherAppsPrompter_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		B7DD659A805F7F8B7B4A29A9 /* Pods-OtherAppsPrompter_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OtherAppsPrompter_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OtherAppsPrompter_Tests/Pods-OtherAppsPrompter_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +92,7 @@
 			children = (
 				ABED5E151F7D4C610046EF3F /* AppDelegate.swift */,
 				ABED5E171F7D4C610046EF3F /* ViewController.swift */,
+				ABF1A62E205D0EC200B7A123 /* OtherAppsConfig.json */,
 				ABED5E191F7D4C610046EF3F /* Assets.xcassets */,
 				ABED5E1B1F7D4C610046EF3F /* Main.storyboard */,
 				ABED5E1E1F7D4C610046EF3F /* Info.plist */,
@@ -226,6 +229,7 @@
 			files = (
 				ABED5E1A1F7D4C610046EF3F /* Assets.xcassets in Resources */,
 				ABED5E1D1F7D4C610046EF3F /* Main.storyboard in Resources */,
+				ABF1A62F205D0EC300B7A123 /* OtherAppsConfig.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,6 +29,10 @@ protocol OtherAppsViewControllerDelegate: class {
 
 class OtherAppsViewController: NSViewController {
     
+    private static let collectionViewInset = CGFloat(30)
+    private static let collectionViewItemsPerRow = CGFloat(3)
+    private static let collectionViewItemHeight = CGFloat(220)
+    
     enum DismissState {
         case dontShowAgain
         case canShowAgain
@@ -41,6 +45,8 @@ class OtherAppsViewController: NSViewController {
         didSet {
             collectionView.dataSource = self
             collectionView.delegate = self
+            collectionView.register(AppCellItem.self, forItemWithIdentifier: AppCellItem.identifier)
+            collectionView.isSelectable = true
         }
     }
     
@@ -67,32 +73,11 @@ extension OtherAppsViewController: NSCollectionViewDataSource {
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         
-        guard let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AppCellItem"), for: indexPath) as? AppCellItem else {
+        guard let item = collectionView.makeItem(withIdentifier: AppCellItem.identifier, for: indexPath) as? AppCellItem else {
             fatalError("Wrong item returned")
         }
-        item.delegate = self
-        (item.view as! ImageCellView).viewController?.delegate = self
         
-        // TODO: Investigate this crash
-        guard imageCellViewModels.count > indexPath.item else {
-            return item
-        }
-        
-        let cellViewModel = imageCellViewModels[indexPath.item]
-        
-        item.image = cellViewModel.image
-        switch cellViewModel.matchState {
-        case .exactMatch:
-            item.selectedStateImageView?.image = #imageLiteral(resourceName: "Selected Exact Match")
-            
-        case .closeMatch:
-            item.selectedStateImageView?.image = #imageLiteral(resourceName: "Selected Close Match")
-            
-        case .notMatched:
-            item.selectedStateImageView?.image = nil
-            
-        }
-        
+        item.app = apps[indexPath.item]
         
         return item
     }
@@ -104,7 +89,11 @@ extension OtherAppsViewController: NSCollectionViewDataSource {
 extension OtherAppsViewController: NSCollectionViewDelegate {
     
     func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
+        guard let index = indexPaths.first?.item else {
+            fatalError("Expecting the indexPaths Set to contain an indexPath")
+        }
         
+        delegate?.otherAppsViewController(otherAppsViewController: self, didSelectApp: apps[index])
     }
     
 }
@@ -115,29 +104,28 @@ extension OtherAppsViewController: NSCollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
         
-        let totalGap = (EditorControlsViewController.collectionViewInset * 2) + (EditorControlsViewController.collectionViewInset * (EditorControlsViewController.collectionViewItemsPerRow - 1))
+        let totalGap = (OtherAppsViewController.collectionViewInset * 2) + (OtherAppsViewController.collectionViewInset * (OtherAppsViewController.collectionViewItemsPerRow - 1))
         
-        let itemWidth = (collectionView.frame.size.width - totalGap) / EditorControlsViewController.collectionViewItemsPerRow
+        let itemWidth = (collectionView.frame.size.width - totalGap) / OtherAppsViewController.collectionViewItemsPerRow
         
-        return NSSize(width: itemWidth, height: itemWidth)
+        return NSSize(width: floor(itemWidth), height: OtherAppsViewController.collectionViewItemHeight)
     }
     
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, insetForSectionAt section: Int) -> NSEdgeInsets {
         
-        return NSEdgeInsets(top: EditorControlsViewController.collectionViewInset,
-                            left: EditorControlsViewController.collectionViewInset,
-                            bottom: EditorControlsViewController.collectionViewInset,
-                            right: EditorControlsViewController.collectionViewInset)
+        return NSEdgeInsets(top: OtherAppsViewController.collectionViewInset,
+                            left: OtherAppsViewController.collectionViewInset,
+                            bottom: OtherAppsViewController.collectionViewInset,
+                            right: OtherAppsViewController.collectionViewInset)
     }
     
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        
-        return EditorControlsViewController.collectionViewInset
+        return OtherAppsViewController.collectionViewInset
     }
     
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         
-        return EditorControlsViewController.collectionViewInset
+        return OtherAppsViewController.collectionViewInset
     }
     
 }
