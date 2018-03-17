@@ -136,6 +136,6 @@ extension OtherAppsViewController: NSWindowDelegate {
     
     func windowWillClose(_ notification: Notification) {
         let suppressed = (showMeAgainButton?.state == .off)
-        delegate?.otherAppsViewController(otherAppsViewController: self, didCloseWithState: suppressed ? .canShowAgain : .dontShowAgain )
+        delegate?.otherAppsViewController(otherAppsViewController: self, didCloseWithState: suppressed ? .dontShowAgain : .canShowAgain  )
     }
 }

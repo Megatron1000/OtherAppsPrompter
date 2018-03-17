@@ -30,12 +30,19 @@ public class OtherAppsPrompter {
     }
     
     let suppressPromptKey = "com.otherappsprompter.suppressed"
+    let initCountKey = "com.otherappsprompter.init-count"
     let appStoreLinkFormat = "macappstore://itunes.apple.com/us/app/id%@?ls=1&mt=8"
 
     let appIdentifier: String
     let appName: String
     let configURL: URL
+    let initialSuppressionCount: Int
     let httpClient = HTTPClient()
+    
+    // MARK: Logging Classes
+    
+    let eventLogger: EventTrackingLogger.Type?
+    let debugLogger: DebugLogger.Type?
     
     private var windowController: NSWindowController?
     
@@ -52,15 +59,34 @@ public class OtherAppsPrompter {
     }
     
     var isSuppressed: Bool {
-        return defaults.bool(forKey: suppressPromptKey)
+        return defaults.bool(forKey: suppressPromptKey) || initCount <= initialSuppressionCount
+    }
+    
+    private(set) var initCount: Int {
+        get {
+            return defaults.integer(forKey: initCountKey)
+        }
+        set {
+            defaults.set(newValue, forKey: initCountKey)
+        }
     }
     
     // MARK: Initialisation
     
-    public required init(appIdentifier: String, appName: String, configURL: URL) {
+    public required init(appIdentifier: String,
+                         appName: String,
+                         configURL: URL,
+                         initialSuppressionCount: Int = 2,
+                         eventLogger: EventTrackingLogger.Type? = nil,
+                         debugLogger: DebugLogger.Type? = nil) {
         self.appIdentifier = appIdentifier
         self.appName = appName
         self.configURL = configURL
+        self.initialSuppressionCount = initialSuppressionCount
+        self.eventLogger = eventLogger
+        self.debugLogger = debugLogger
+                
+        initCount = initCount.advanced(by: 1)
     }
     
     public func prepareAndPresentUnlessSuppressed(completion: @escaping ((Result<()>) -> Void)) {
@@ -166,10 +192,15 @@ extension OtherAppsPrompter: OtherAppsViewControllerDelegate {
         }
         
         NSWorkspace.shared.open(url)
+        
+        eventLogger?.logEvent("other_app_viewed", parameters: ["app" : app.appName] )
     }
     
     func otherAppsViewController(otherAppsViewController: OtherAppsViewController, didCloseWithState dismissState: OtherAppsViewController.DismissState) {
         
+        defaults.set((dismissState == .dontShowAgain), forKey: suppressPromptKey)
+        
+        eventLogger?.logEvent("other_app_promoter_dismissed", parameters: ["canShowAgain": (dismissState == .canShowAgain)])
     }
     
 }
