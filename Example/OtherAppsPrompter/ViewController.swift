@@ -25,23 +25,5 @@ import OtherAppsPrompter
 
 class ViewController: NSViewController {
     
-    let otherAppsPrompter = OtherAppsPrompter(appIdentifier: "123123",
-                                                appName: Bundle.main.displayName!,
-                                                configURL: Bundle.main.url(forResource: "OtherAppsConfig", withExtension: "json")!)
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        otherAppsPrompter.prepareAndPresentUnlessSuppressed { result in
-            switch result {
-                case .success:
-                    break
-                
-                case .failure:
-                    break
-            }
-        }
-    }
-
 }
 

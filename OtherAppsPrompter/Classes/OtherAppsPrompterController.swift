@@ -23,7 +23,7 @@
 import Cocoa
 import Kingfisher
 
-public class OtherAppsPrompter {
+public class OtherAppsPrompterController {
     
     enum OtherAppsPrompterError: Error {
         case failedToPrefetchAllImages
@@ -33,7 +33,7 @@ public class OtherAppsPrompter {
     let initCountKey = "com.otherappsprompter.init-count"
     let appStoreLinkFormat = "macappstore://itunes.apple.com/us/app/id%@?ls=1&mt=8"
 
-    let appIdentifier: String
+    let appStoreID: String
     let appName: String
     let configURL: URL
     let initialSuppressionCount: Int
@@ -45,6 +45,7 @@ public class OtherAppsPrompter {
     let debugLogger: DebugLogger.Type?
     
     private var windowController: NSWindowController?
+    private var hasBeenPresented = false
     
     private let defaults = UserDefaults.standard
     private var apps: [App]?
@@ -62,6 +63,10 @@ public class OtherAppsPrompter {
         return defaults.bool(forKey: suppressPromptKey) || initCount <= initialSuppressionCount
     }
     
+    public var canPresent: Bool {
+        return isSuppressed == false && isPrepared && hasBeenPresented == false
+    }
+    
     private(set) var initCount: Int {
         get {
             return defaults.integer(forKey: initCountKey)
@@ -73,19 +78,19 @@ public class OtherAppsPrompter {
     
     // MARK: Initialisation
     
-    public required init(appIdentifier: String,
+    public required init(appStoreID: String,
                          appName: String,
                          configURL: URL,
                          initialSuppressionCount: Int = 2,
                          eventLogger: EventTrackingLogger.Type? = nil,
                          debugLogger: DebugLogger.Type? = nil) {
-        self.appIdentifier = appIdentifier
+        self.appStoreID = appStoreID
         self.appName = appName
         self.configURL = configURL
         self.initialSuppressionCount = initialSuppressionCount
         self.eventLogger = eventLogger
         self.debugLogger = debugLogger
-                
+        
         initCount = initCount.advanced(by: 1)
     }
     
@@ -121,13 +126,17 @@ public class OtherAppsPrompter {
         
         let request = URLRequest(url: configURL)
         
-        httpClient.makeNetworkRequest(with: request, completion: { result in
+        httpClient.makeNetworkRequest(with: request, completion: { [weak self] result in
+            
+            guard let strongSelf = self else { return }
             
             switch result {
             case .success(let data):
                 
                 do {
-                    let apps = try JSONDecoder().decode([App].self, from: data)
+                    let allDecodedApps = try JSONDecoder().decode([App].self, from: data)
+                    
+                    let apps = allDecodedApps.filter{ $0.appStoreID != strongSelf.appStoreID }
                     
                     let urls = apps.map{ $0.imageUrl }
                     let prefetcher = ImagePrefetcher(urls: urls) { [weak self] skippedResources, failedResources, completedResources in
@@ -161,11 +170,11 @@ public class OtherAppsPrompter {
     public func present() {
         
         guard
-            isPrepared else {
+            canPresent else {
                 fatalError("Asked to present before being prepared")
         }
         
-        let frameworkBundle = Bundle(for: OtherAppsPrompter.self)
+        let frameworkBundle = Bundle(for: OtherAppsPrompterController.self)
         let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("OtherAppsPrompter.bundle")
         let resourceBundle = Bundle(url: bundleURL!)!
         let storyboard = NSStoryboard(name: NSStoryboard.Name("OtherAppsPrompter") , bundle: resourceBundle)
@@ -178,11 +187,13 @@ public class OtherAppsPrompter {
         
         windowController?.window?.makeKeyAndOrderFront(self)
         NSApp.activate(ignoringOtherApps: true)
+        
+        hasBeenPresented = true
     }
     
 }
 
-extension OtherAppsPrompter: OtherAppsViewControllerDelegate {
+extension OtherAppsPrompterController: OtherAppsViewControllerDelegate {
     
     func otherAppsViewController(otherAppsViewController: OtherAppsViewController, didSelectApp app: App) {
         

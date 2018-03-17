@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'OtherAppsPrompter'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'Shows a list of macOS apps that a user can link to in the App Store.'
 
   s.description      = <<-DESC

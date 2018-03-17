@@ -21,18 +21,34 @@
 //    SOFTWARE.
 
 import Cocoa
+import OtherAppsPrompter
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-
-
+    
+    let otherAppsPrompter = OtherAppsPrompterController(appStoreID: "809625456",
+                                                        appName: Bundle.main.displayName!,
+                                                        configURL: Bundle.main.url(forResource: "OtherAppsConfig", withExtension: "json")!)
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        
+        otherAppsPrompter.prepare(completion: {_ in })
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+    }
+    
+    func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
+        
+        if otherAppsPrompter.canPresent {
+            otherAppsPrompter.present()
+            return .terminateCancel
+        }
+        else {
+            return .terminateNow
+        }
+        
     }
 
 
