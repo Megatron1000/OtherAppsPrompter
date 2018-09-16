@@ -177,7 +177,7 @@ public class OtherAppsPrompterController {
         let frameworkBundle = Bundle(for: OtherAppsPrompterController.self)
         let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("OtherAppsPrompter.bundle")
         let resourceBundle = Bundle(url: bundleURL!)!
-        let storyboard = NSStoryboard(name: NSStoryboard.Name("OtherAppsPrompter") , bundle: resourceBundle)
+        let storyboard = NSStoryboard(name: "OtherAppsPrompter" , bundle: resourceBundle)
         
         windowController = storyboard.instantiateInitialController() as? NSWindowController
         let viewController = (windowController?.contentViewController as! OtherAppsViewController)
