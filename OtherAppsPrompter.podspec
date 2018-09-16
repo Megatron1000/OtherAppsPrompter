@@ -15,7 +15,8 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/markbridgesapps'
 
   s.platform     = :osx, '10.11'
-  
+  s.swift_version = '4.2'
+
   s.dependency 'Kingfisher', '> 4'
 
   s.source_files = 'OtherAppsPrompter/Classes/**/*'
