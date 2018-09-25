@@ -76,7 +76,7 @@ class AppCellView: NSView {
         textField.isEditable = false
         textField.stringValue = "View in Mac App Store >"
         textField.font = NSFont.systemFont(ofSize: 18, weight: NSFont.Weight.light)
-        textField.textColor = NSColor.alternateSelectedControlColor
+        textField.textColor = NSColor.linkColor
         return textField
     }()
     
