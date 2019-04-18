@@ -32,7 +32,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-        otherAppsPrompter.prepare(completion: {_ in })
+        otherAppsPrompter.prepare(completion: { result in
+            print(result)
+        })
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

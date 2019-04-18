@@ -37,7 +37,12 @@ public class OtherAppsPrompterController {
     let appName: String
     let configURL: URL
     let initialSuppressionCount: Int
-    let httpClient = HTTPClient()
+    let session: URLSession = {
+        let configuration = URLSessionConfiguration.default
+        configuration.requestCachePolicy = NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData
+        return URLSession(configuration: configuration)
+    }()
+    lazy var httpClient = HTTPClient(session: session)
     
     // MARK: Logging Classes
     
@@ -124,7 +129,8 @@ public class OtherAppsPrompterController {
     
     public func prepare(completion: @escaping ((Result<Void>) -> Void)) {
         
-        let request = URLRequest(url: configURL)
+        var request = URLRequest(url: configURL)
+        request.cachePolicy = .reloadIgnoringLocalCacheData
         
         httpClient.makeNetworkRequest(with: request, completion: { [weak self] result in
             
