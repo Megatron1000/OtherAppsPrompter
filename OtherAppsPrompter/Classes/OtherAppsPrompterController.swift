@@ -129,7 +129,7 @@ public class OtherAppsPrompterController {
     
     public func prepare(completion: @escaping ((Result<Void>) -> Void)) {
         
-        var request = URLRequest(url: configURL)
+        let request = URLRequest(url: configURL)
         
         httpClient.makeNetworkRequest(with: request, completion: { [weak self] result in
             
