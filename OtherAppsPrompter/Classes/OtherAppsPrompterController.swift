@@ -130,7 +130,6 @@ public class OtherAppsPrompterController {
     public func prepare(completion: @escaping ((Result<Void>) -> Void)) {
         
         var request = URLRequest(url: configURL)
-        request.cachePolicy = .reloadIgnoringLocalCacheData
         
         httpClient.makeNetworkRequest(with: request, completion: { [weak self] result in
             
