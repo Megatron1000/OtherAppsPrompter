@@ -176,13 +176,11 @@ public class OtherAppsPrompterController {
         
         guard
             canPresent else {
-                fatalError("Asked to present before being prepared")
+                assertionFailure("Asked to present before being prepared")
+            return
         }
         
-        let frameworkBundle = Bundle(for: OtherAppsPrompterController.self)
-        let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("OtherAppsPrompter.bundle")
-        let resourceBundle = Bundle(url: bundleURL!)!
-        let storyboard = NSStoryboard(name: "OtherAppsPrompter" , bundle: resourceBundle)
+        let storyboard = NSStoryboard(name: "OtherAppsPrompter" , bundle: .module)
         
         windowController = storyboard.instantiateInitialController() as? NSWindowController
         let viewController = (windowController?.contentViewController as! OtherAppsViewController)
@@ -204,7 +202,8 @@ extension OtherAppsPrompterController: OtherAppsViewControllerDelegate {
         
         let urlString = String(format: appStoreLinkFormat, app.appStoreID)
         guard let url = URL(string: urlString) else {
-            fatalError("Failed to make url for app store")
+            assertionFailure("Failed to make url for app store")
+            return
         }
         
         NSWorkspace.shared.open(url)
