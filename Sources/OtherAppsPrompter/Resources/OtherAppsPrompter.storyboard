@@ -704,7 +704,7 @@
         <!--Other Apps View Controller-->
         <scene sceneID="86g-XV-XjV">
             <objects>
-                <viewController id="QPO-TS-ksK" customClass="OtherAppsViewController" customModule="OtherAppsPrompter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="QPO-TS-ksK" customClass="OtherAppsViewController" customModule="OtherAppsPrompter" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="tYp-0X-w3w">
                         <rect key="frame" x="0.0" y="0.0" width="905" height="674"/>
                         <autoresizingMask key="autoresizingMask"/>

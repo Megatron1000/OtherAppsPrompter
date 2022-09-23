@@ -27,7 +27,6 @@ let package = Package(
                 .product(name: "Kingfisher", package: "Kingfisher")
             ],
             resources: [
-                  .process("Resources/Assets.xcassets"),
                   .process("Resources/OtherAppsPrompter.storyboard"),
             ]),
     ]
