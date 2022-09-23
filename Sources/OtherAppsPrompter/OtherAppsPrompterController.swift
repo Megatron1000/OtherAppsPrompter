@@ -49,7 +49,10 @@ public class OtherAppsPrompterController {
     let eventLogger: EventTrackingLogger.Type?
     let debugLogger: DebugLogger.Type?
     
-    private var windowController: NSWindowController?
+    private lazy var windowController: NSWindowController = {
+        let storyboard = NSStoryboard(name: "OtherAppsPrompter" , bundle: .module)
+        return (storyboard.instantiateInitialController() as? NSWindowController) ?? NSWindowController()
+    }()
     private var hasBeenPresented = false
     
     private let defaults = UserDefaults.standard
@@ -177,18 +180,26 @@ public class OtherAppsPrompterController {
         guard
             canPresent else {
                 assertionFailure("Asked to present before being prepared")
+                return
+        }
+        
+        guard
+            let viewController = (windowController.contentViewController as? OtherAppsViewController) else {
+            assertionFailure("Unexpected storyboard type")
             return
         }
         
-        let storyboard = NSStoryboard(name: "OtherAppsPrompter" , bundle: .module)
+        guard
+            let apps = apps else {
+            assertionFailure("No apps set")
+            return
+        }
         
-        windowController = storyboard.instantiateInitialController() as? NSWindowController
-        let viewController = (windowController?.contentViewController as! OtherAppsViewController)
         viewController.delegate = self
         viewController.appName = appName
-        viewController.apps = apps!
+        viewController.apps = apps
         
-        windowController?.window?.makeKeyAndOrderFront(self)
+        windowController.window?.makeKeyAndOrderFront(self)
         NSApp.activate(ignoringOtherApps: true)
         
         hasBeenPresented = true
