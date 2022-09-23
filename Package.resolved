@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher",
+      "state" : {
+        "revision" : "be1a1acb283a702b99b630f586877ba02234b4cb",
+        "version" : "7.3.2"
+      }
+    },
+    {
+      "identity" : "swifthttpstatuscodes",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/rhodgkins/SwiftHTTPStatusCodes",
+      "state" : {
+        "revision" : "a2c4f5f645dec3a5614ff82e391f44e22d778f87",
+        "version" : "3.3.2"
+      }
+    }
+  ],
+  "version" : 2
+}
